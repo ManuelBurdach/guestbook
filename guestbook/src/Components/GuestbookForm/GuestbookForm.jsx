@@ -1,13 +1,13 @@
 import "./GuestbookForm.css";
 
-const GuestbookForm = ({ setGuestbookEntries }) => {
-  const formInput = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    message: "",
-  };
+const formInput = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  message: "",
+};
 
+const GuestbookForm = ({ setGuestbookEntries }) => {
   const sendPost = (e) => {
     e.preventDefault();
     fetch("http://localhost:7777/postPost/", {
@@ -16,9 +16,11 @@ const GuestbookForm = ({ setGuestbookEntries }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formInput),
-    }).then((data) => {
-      setGuestbookEntries(data);
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setGuestbookEntries(data);
+      });
   };
 
   return (

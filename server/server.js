@@ -1,23 +1,25 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import { readEntries, writeEntrie, appendFile } from "./helper.js";
 
 const backendServer = express();
 const PORT = 7777;
-const posts = [];
 
 backendServer.use(morgan("dev"));
-backendServer.use(cors({ origin: "http://localhost:5173" }));
 backendServer.use(express.json());
+backendServer.use(cors({ origin: "http://localhost:5173" }));
 
 backendServer.get("/getPosts", (req, res) => {
-  res.json(posts);
+  readEntries()
+    .then((posts) => res.json(posts))
+    .catch((err) => console.log(err));
 });
 
 backendServer.post("/postPost", (req, res) => {
-  posts.push(req.body);
-  console.log(posts);
-  res.json(posts);
+  appendFile(req.body)
+    .then((posts) => res.json(posts))
+    .catch(() => console.log(err));
 });
 
 backendServer.listen(PORT, () => {
