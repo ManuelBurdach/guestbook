@@ -1,0 +1,6 @@
+.GuestbookForm input {
+  display: block;
+  margin: 10px 0;
+  line-height: 30px;
+  text-align: center;
+}
