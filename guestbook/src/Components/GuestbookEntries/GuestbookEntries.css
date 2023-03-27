@@ -1,0 +1,9 @@
+.GuestbookEntries {
+  background-color: red;
+  margin: 10px;
+}
+
+.GuestbookEntries p {
+  background-color: tomato;
+  margin: 5px;
+}

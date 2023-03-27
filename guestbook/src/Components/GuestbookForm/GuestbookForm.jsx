@@ -1,6 +1,6 @@
 import "./GuestbookForm.css";
 
-const GuestbookForm = () => {
+const GuestbookForm = ({ setGuestbookEntries }) => {
   const formInput = {
     firstname: "",
     lastname: "",
@@ -16,6 +16,8 @@ const GuestbookForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formInput),
+    }).then((data) => {
+      setGuestbookEntries(data);
     });
   };
 
